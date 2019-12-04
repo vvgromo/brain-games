@@ -22,7 +22,7 @@ function runEven()
         $number = rand($startRandomNumber, $endRandomNumber);
         line("Question: %d", $number);
         $correctAnswer = isEven($number) ? 'yes' : 'no';
-        $answer = prompt("Your answer: ");
+        $answer = prompt("Your answer");
         if ($answer === $correctAnswer) {
             line("Correct!");
         } else {
