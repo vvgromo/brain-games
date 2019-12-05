@@ -6,4 +6,12 @@
 
 ## Installation
 
-https://asciinema.org/a/285193
+`composer global require iamsvv/php-project-lvl1:dev-master`
+
+### Even
+
+[![asciicast](https://asciinema.org/a/285193.svg)](https://asciinema.org/a/285193)
+
+### Calc
+
+[![asciicast](https://asciinema.org/a/285877.svg)](https://asciinema.org/a/285877)
