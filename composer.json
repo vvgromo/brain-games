@@ -1,6 +1,12 @@
 {
     "name": "iamsvv/php-project-lvl1",
-    "description": "PHP Project level 1",
+    "description": "Brain Games",
+    "type": "project",
+    "keywords": [
+        "game",
+        "brain",
+        "cli programms"
+    ],
     "authors": [
         {
             "name": "Viacheslav Sapronov",

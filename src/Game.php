@@ -5,7 +5,7 @@ namespace BrainGames;
 use function cli\line;
 use function cli\prompt;
 
-const START_RANDOM_NUMBER = 0;
+const START_RANDOM_NUMBER = 1;
 const END_RANDOM_NUMBER = 100;
 const COUNT_QUESTIONS = 3;
 
