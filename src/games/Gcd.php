@@ -6,16 +6,17 @@ use function BrainGames\greetAndGetName;
 use function BrainGames\playGameStep;
 use function BrainGames\congratulate;
 
+use const BrainGames\START_RANDOM_NUMBER;
+use const BrainGames\END_RANDOM_NUMBER;
+use const BrainGames\COUNT_QUESTIONS;
+
 function runGcd()
 {
     $name = greetAndGetName('Find the greatest common divisor of given numbers.');
-    $startRandomNumber = 0;
-    $endRandomNumber = 100;
-    $countQuestions = 3;
 
-    for ($i = 0; $i < $countQuestions; $i++) {
-        $a = rand($startRandomNumber, $endRandomNumber);
-        $b = rand($startRandomNumber, $endRandomNumber);
+    for ($i = 0; $i < COUNT_QUESTIONS; $i++) {
+        $a = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
+        $b = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
         $correctAnswer = gcd($a, $b);
         $question = "{$a} {$b}";
         $resultGameStep = playGameStep($correctAnswer, $question, $name);

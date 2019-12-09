@@ -6,18 +6,19 @@ use function BrainGames\greetAndGetName;
 use function BrainGames\playGameStep;
 use function BrainGames\congratulate;
 
+use const BrainGames\START_RANDOM_NUMBER;
+use const BrainGames\END_RANDOM_NUMBER;
+use const BrainGames\COUNT_QUESTIONS;
+
 function runProgression()
 {
     $name = greetAndGetName('What number is missing in the progression?');
-    $startRandomNumber = 0;
-    $endRandomNumber = 100;
     $sizeProgression = 10;
-    $countQuestions = 3;
 
-    for ($i = 0; $i < $countQuestions; $i++) {
-        $firstNumber = rand($startRandomNumber, $endRandomNumber);
-        $missIndex = rand($startRandomNumber, $sizeProgression - 1);
-        $delta = rand($startRandomNumber, $endRandomNumber);
+    for ($i = 0; $i < COUNT_QUESTIONS; $i++) {
+        $firstNumber = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
+        $missIndex = rand(START_RANDOM_NUMBER, $sizeProgression - 1);
+        $delta = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
         $progression = fillProgression($firstNumber, $sizeProgression, $delta);
         $correctAnswer = $progression[$missIndex];
         $question = makeQuestion($progression, $missIndex);

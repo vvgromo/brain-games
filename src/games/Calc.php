@@ -6,18 +6,19 @@ use function BrainGames\greetAndGetName;
 use function BrainGames\playGameStep;
 use function BrainGames\congratulate;
 
+use const BrainGames\START_RANDOM_NUMBER;
+use const BrainGames\END_RANDOM_NUMBER;
+use const BrainGames\COUNT_QUESTIONS;
+
 function runCalc()
 {
     $name = greetAndGetName('What is the result of the expression?');
-    $startRandomNumber = 0;
-    $endRandomNumber = 100;
-    $countQuestions = 3;
     $signs = ['+', '-', '*'];
 
-    for ($i = 0; $i < $countQuestions; $i++) {
-        $a = rand($startRandomNumber, $endRandomNumber);
-        $b = rand($startRandomNumber, $endRandomNumber);
-        $signIndex = rand($startRandomNumber, count($signs) - 1);
+    for ($i = 0; $i < COUNT_QUESTIONS; $i++) {
+        $a = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
+        $b = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
+        $signIndex = rand(START_RANDOM_NUMBER, count($signs) - 1);
         $correctAnswer = calculateAnswer($a, $b, $signs[$signIndex]);
         $question = "{$a} {$signs[$signIndex]} {$b}";
         $resultGameStep = playGameStep($correctAnswer, $question, $name);

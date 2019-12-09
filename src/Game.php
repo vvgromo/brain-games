@@ -5,6 +5,10 @@ namespace BrainGames;
 use function cli\line;
 use function cli\prompt;
 
+const START_RANDOM_NUMBER = 0;
+const END_RANDOM_NUMBER = 100;
+const COUNT_QUESTIONS = 3;
+
 function greetAndGetName($task)
 {
     line('Welcome to the Brain Game!');
