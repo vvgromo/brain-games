@@ -23,3 +23,7 @@ https://asciinema.org/a/286441
 ### Progression
 
 https://asciinema.org/a/286478
+
+### Prime
+
+https://asciinema.org/a/286533
