@@ -10,8 +10,12 @@
 
 ### Even
 
-[![asciicast](https://asciinema.org/a/285193.svg)](https://asciinema.org/a/285193)
+https://asciinema.org/a/285193
 
 ### Calc
 
-[![asciicast](https://asciinema.org/a/285877.svg)](https://asciinema.org/a/285877)
+https://asciinema.org/a/285877
+
+### Gcd
+
+https://asciinema.org/a/286441
