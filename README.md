@@ -19,3 +19,7 @@ https://asciinema.org/a/285877
 ### Gcd
 
 https://asciinema.org/a/286441
+
+### Progression
+
+https://asciinema.org/a/286478
