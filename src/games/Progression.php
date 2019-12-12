@@ -31,9 +31,9 @@ function runProgression()
 
 function fillProgression($firstNumber, $delta)
 {
-    $progression = [$firstNumber];
-    for ($i = 0, $size = SIZE_PROGRESSION - 1; $i < $size; $i++) {
-        $progression[] = $progression[$i] + $delta;
+    $progression = [];
+    for ($i = 0; $i < SIZE_PROGRESSION; $i++) {
+        $progression[] = $i === 0 ? $firstNumber : $progression[$i - 1] + $delta;
     }
 
     return $progression;

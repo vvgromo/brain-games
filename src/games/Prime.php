@@ -11,10 +11,9 @@ use const BrainGames\COUNT_QUESTIONS;
 
 function runPrime()
 {
-    $greeting = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-    $name = greetAndGetName($greeting);
+    $name = greetAndGetName('Answer "yes" if given number is prime. Otherwise answer "no".');
     
-    for ($i = 0; $i < COUNT_QUESTIONS; $i++) {
+    for ($i = 0; $i < COUNT_QUESTIONS; $i += 1) {
         $number = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
         $correctAnswer = isPrime($number) ? 'yes' : 'no';
         $resultGameStep = playGameStep($correctAnswer, $number, $name, $i);
@@ -28,18 +27,14 @@ function isPrime($number)
 {
     if ($number == 2) {
         return true;
-    }    
-    if ($number < 2 || $number % 2 == 0) {
+    }
+    if ($number < 2) {
         return false;
     }
-    
-    $i = 3;
-    $maxFactor = (int)sqrt($number);
-    while ($i <= $maxFactor) {
-        if ($number % $i == 0) {
+    for ($i = 2, $end = sqrt($number); $i <= $end; $i++) {
+        if (!($number % $i)) {
             return false;
         }
-        $i += 2;
     }
     
     return true;
