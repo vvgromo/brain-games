@@ -4,7 +4,6 @@ namespace BrainGames\games\Gcd;
 
 use function BrainGames\greetAndGetName;
 use function BrainGames\playGameStep;
-use function BrainGames\congratulate;
 
 use const BrainGames\START_RANDOM_NUMBER;
 use const BrainGames\END_RANDOM_NUMBER;
