@@ -29,11 +29,11 @@ function isPrime($number)
 {
     if ($number == 2) {
         return true;
-    }
-    
-    if ($number % 2 == 0) {
+    }    
+    if ($number < 2 || $number % 2 == 0) {
         return false;
     }
+    
     $i = 3;
     $maxFactor = (int)sqrt($number);
     while ($i <= $maxFactor) {
