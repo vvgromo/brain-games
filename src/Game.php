@@ -21,21 +21,16 @@ function greetAndGetName($task)
     return $name;
 }
 
-function playGameStep($correctAnswer, $question, $name)
+function playGameStep($correctAnswer, $question, $name, $step)
 {
     line("Question: %s", $question);
     $answer = prompt("Your answer");
     if ($answer == $correctAnswer) {
         line("Correct!");
-        return true;
+        if ($step === COUNT_QUESTIONS - 1) {
+            line("Congratulations, %s!", $name);
+        }
     }
     line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, $correctAnswer);
     line("Let's try again, %s!", $name);
-    
-    return false;
-}
-
-function congratulate($name)
-{
-    line("Congratulations, %s!", $name);
 }

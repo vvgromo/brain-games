@@ -1,6 +1,6 @@
 <?php
 
-namespace BrainGames\Games\Progression;
+namespace BrainGames\games\Progression;
 
 use function BrainGames\greetAndGetName;
 use function BrainGames\playGameStep;
@@ -22,14 +22,7 @@ function runProgression()
         $progression = fillProgression($firstNumber, $sizeProgression, $delta);
         $correctAnswer = $progression[$missIndex];
         $question = makeQuestion($progression, $missIndex);
-        $resultGameStep = playGameStep($correctAnswer, $question, $name);
-        if (!$resultGameStep) {
-            break;
-        }
-    }
-
-    if ($resultGameStep) {
-        congratulate($name);
+        playGameStep($correctAnswer, $question, $name, $i);
     }
 }
 

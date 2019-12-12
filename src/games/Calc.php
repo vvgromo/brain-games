@@ -1,6 +1,6 @@
 <?php
 
-namespace BrainGames\Games\Calc;
+namespace BrainGames\games\Calc;
 
 use function BrainGames\greetAndGetName;
 use function BrainGames\playGameStep;
@@ -21,14 +21,7 @@ function runCalc()
         $signIndex = rand(START_RANDOM_NUMBER, count($signs) - 1);
         $correctAnswer = calculateAnswer($a, $b, $signs[$signIndex]);
         $question = "{$a} {$signs[$signIndex]} {$b}";
-        $resultGameStep = playGameStep($correctAnswer, $question, $name);
-        if (!$resultGameStep) {
-            break;
-        }
-    }
-
-    if ($resultGameStep) {
-        congratulate($name);
+        playGameStep($correctAnswer, $question, $name, $i);
     }
 }
 

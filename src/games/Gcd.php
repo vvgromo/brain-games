@@ -1,6 +1,6 @@
 <?php
 
-namespace BrainGames\Games\Gcd;
+namespace BrainGames\games\Gcd;
 
 use function BrainGames\greetAndGetName;
 use function BrainGames\playGameStep;
@@ -19,14 +19,7 @@ function runGcd()
         $b = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
         $correctAnswer = gcd($a, $b);
         $question = "{$a} {$b}";
-        $resultGameStep = playGameStep($correctAnswer, $question, $name);
-        if (!$resultGameStep) {
-            break;
-        }
-    }
-
-    if ($resultGameStep) {
-        congratulate($name);
+        playGameStep($correctAnswer, $question, $name, $i);
     }
 }
 

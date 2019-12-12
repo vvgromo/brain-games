@@ -1,6 +1,6 @@
 <?php
 
-namespace BrainGames\Games\Even;
+namespace BrainGames\games\Even;
 
 use function BrainGames\greetAndGetName;
 use function BrainGames\playGameStep;
@@ -17,14 +17,7 @@ function runEven()
     for ($i = 0; $i < COUNT_QUESTIONS; $i++) {
         $number = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
         $correctAnswer = isEven($number) ? 'yes' : 'no';
-        $resultGameStep = playGameStep($correctAnswer, $number, $name);
-        if (!$resultGameStep) {
-            break;
-        }
-    }
-
-    if ($resultGameStep) {
-        congratulate($name);
+        playGameStep($correctAnswer, $question, $name, $i);
     }
 }
 

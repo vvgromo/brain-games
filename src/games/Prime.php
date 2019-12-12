@@ -1,6 +1,6 @@
 <?php
 
-namespace BrainGames\Games\Prime;
+namespace BrainGames\games\Prime;
 
 use function BrainGames\greetAndGetName;
 use function BrainGames\playGameStep;
@@ -18,14 +18,7 @@ function runPrime()
     for ($i = 0; $i < COUNT_QUESTIONS; $i++) {
         $number = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
         $correctAnswer = isPrime($number) ? 'yes' : 'no';
-        $resultGameStep = playGameStep($correctAnswer, $number, $name);
-        if (!$resultGameStep) {
-            break;
-        }
-    }
-
-    if ($resultGameStep) {
-        congratulate($name);
+        playGameStep($correctAnswer, $question, $name, $i);
     }
 }
 
