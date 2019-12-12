@@ -21,7 +21,10 @@ function runCalc()
         $signIndex = rand(START_RANDOM_NUMBER, count($signs) - 1);
         $correctAnswer = calculateAnswer($a, $b, $signs[$signIndex]);
         $question = "{$a} {$signs[$signIndex]} {$b}";
-        playGameStep($correctAnswer, $question, $name, $i);
+        $resultGameStep = playGameStep($correctAnswer, $question, $name, $i);
+        if (!$resultGameStep) {
+            break;
+        }
     }
 }
 

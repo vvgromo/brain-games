@@ -22,7 +22,10 @@ function runProgression()
         $progression = fillProgression($firstNumber, $sizeProgression, $delta);
         $correctAnswer = $progression[$missIndex];
         $question = makeQuestion($progression, $missIndex);
-        playGameStep($correctAnswer, $question, $name, $i);
+        $resultGameStep = playGameStep($correctAnswer, $question, $name, $i);
+        if (!$resultGameStep) {
+            break;
+        }
     }
 }
 

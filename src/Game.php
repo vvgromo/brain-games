@@ -30,7 +30,9 @@ function playGameStep($correctAnswer, $question, $name, $step)
         if ($step === COUNT_QUESTIONS - 1) {
             line("Congratulations, %s!", $name);
         }
+        return true;
     }
     line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, $correctAnswer);
     line("Let's try again, %s!", $name);
+    return false;
 }

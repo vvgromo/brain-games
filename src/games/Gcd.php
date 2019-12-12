@@ -19,7 +19,10 @@ function runGcd()
         $b = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
         $correctAnswer = gcd($a, $b);
         $question = "{$a} {$b}";
-        playGameStep($correctAnswer, $question, $name, $i);
+        $resultGameStep = playGameStep($correctAnswer, $question, $name, $i);
+        if (!$resultGameStep) {
+            break;
+        }
     }
 }
 

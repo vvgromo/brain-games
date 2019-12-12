@@ -18,7 +18,10 @@ function runPrime()
     for ($i = 0; $i < COUNT_QUESTIONS; $i++) {
         $number = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
         $correctAnswer = isPrime($number) ? 'yes' : 'no';
-        playGameStep($correctAnswer, $question, $name, $i);
+        $resultGameStep = playGameStep($correctAnswer, $number, $name, $i);
+        if (!$resultGameStep) {
+            break;
+        }
     }
 }
 
