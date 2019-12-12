@@ -10,16 +10,17 @@ use const BrainGames\START_RANDOM_NUMBER;
 use const BrainGames\END_RANDOM_NUMBER;
 use const BrainGames\COUNT_QUESTIONS;
 
+const SIZE_PROGRESSION = 10;
+
 function runProgression()
 {
     $name = greetAndGetName('What number is missing in the progression?');
-    $sizeProgression = 10;
 
     for ($i = 0; $i < COUNT_QUESTIONS; $i++) {
         $firstNumber = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
-        $missIndex = rand(START_RANDOM_NUMBER, $sizeProgression - 1);
+        $missIndex = rand(START_RANDOM_NUMBER, SIZE_PROGRESSION - 1);
         $delta = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
-        $progression = fillProgression($firstNumber, $sizeProgression, $delta);
+        $progression = fillProgression($firstNumber, $delta);
         $correctAnswer = $progression[$missIndex];
         $question = makeQuestion($progression, $missIndex);
         $resultGameStep = playGameStep($correctAnswer, $question, $name, $i);
@@ -29,10 +30,10 @@ function runProgression()
     }
 }
 
-function fillProgression($firstNumber, $sizeProgression, $delta)
+function fillProgression($firstNumber, $delta)
 {
     $progression = [$firstNumber];
-    for ($i = 0, $size = $sizeProgression - 1; $i < $size; $i++) {
+    for ($i = 0, $size = SIZE_PROGRESSION - 1; $i < $size; $i++) {
         $progression[] = $progression[$i] + $delta;
     }
 

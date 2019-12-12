@@ -10,17 +10,18 @@ use const BrainGames\START_RANDOM_NUMBER;
 use const BrainGames\END_RANDOM_NUMBER;
 use const BrainGames\COUNT_QUESTIONS;
 
+const SIGNS = ['+', '-', '*'];
+
 function runCalc()
 {
     $name = greetAndGetName('What is the result of the expression?');
-    $signs = ['+', '-', '*'];
 
     for ($i = 0; $i < COUNT_QUESTIONS; $i++) {
         $a = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
         $b = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
-        $signIndex = rand(START_RANDOM_NUMBER, count($signs) - 1);
-        $correctAnswer = calculateAnswer($a, $b, $signs[$signIndex]);
-        $question = "{$a} {$signs[$signIndex]} {$b}";
+        $signIndex = rand(START_RANDOM_NUMBER, count(SIGNS) - 1);
+        $correctAnswer = calculateAnswer($a, $b, SIGNS[$signIndex]);
+        $question = "{$a} " . SIGNS[$signIndex] . " {$b}";
         $resultGameStep = playGameStep($correctAnswer, $question, $name, $i);
         if (!$resultGameStep) {
             break;
