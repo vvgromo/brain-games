@@ -2,30 +2,25 @@
 
 namespace BrainGames\games\Calc;
 
-use function BrainGames\greetAndGetName;
-use function BrainGames\playGameStep;
+use function BrainGames\playGame;
 
-use const BrainGames\START_RANDOM_NUMBER;
-use const BrainGames\END_RANDOM_NUMBER;
-use const BrainGames\COUNT_QUESTIONS;
+use const BrainGames\START_RANDOM;
+use const BrainGames\END_RANDOM;
 
 const SIGNS = ['+', '-', '*'];
+const TASK = 'What is the result of the expression?';
 
 function runCalc()
 {
-    $name = greetAndGetName('What is the result of the expression?');
+    playGame(function () {
+        $a = rand(START_RANDOM, END_RANDOM);
+        $b = rand(START_RANDOM, END_RANDOM);
+        $sign = SIGNS[array_rand(SIGNS)];
+        $correctAnswer = calculateAnswer($a, $b, $sign);
+        $question = "{$a} {$sign} {$b}";
 
-    for ($i = 0; $i < COUNT_QUESTIONS; $i++) {
-        $a = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
-        $b = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
-        $signIndex = rand(START_RANDOM_NUMBER, count(SIGNS) - 1);
-        $correctAnswer = calculateAnswer($a, $b, SIGNS[$signIndex]);
-        $question = "{$a} " . SIGNS[$signIndex] . " {$b}";
-        $resultGameStep = playGameStep($correctAnswer, $question, $name, $i);
-        if (!$resultGameStep) {
-            break;
-        }
-    }
+        return [$correctAnswer, $question];
+    }, TASK);
 }
 
 function calculateAnswer($a, $b, $sign)

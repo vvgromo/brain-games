@@ -2,25 +2,21 @@
 
 namespace BrainGames\games\Even;
 
-use function BrainGames\greetAndGetName;
-use function BrainGames\playGameStep;
+use function BrainGames\playGame;
 
-use const BrainGames\START_RANDOM_NUMBER;
-use const BrainGames\END_RANDOM_NUMBER;
-use const BrainGames\COUNT_QUESTIONS;
+use const BrainGames\START_RANDOM;
+use const BrainGames\END_RANDOM;
+
+const TASK = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 function runEven()
 {
-    $name = greetAndGetName('Answer "yes" if the number is even, otherwise answer "no".');
+    playGame(function () {
+        $question = rand(START_RANDOM, END_RANDOM);
+        $correctAnswer = isEven($question) ? 'yes' : 'no';
 
-    for ($i = 0; $i < COUNT_QUESTIONS; $i++) {
-        $number = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
-        $correctAnswer = isEven($number) ? 'yes' : 'no';
-        $resultGameStep = playGameStep($correctAnswer, $number, $name, $i);
-        if (!$resultGameStep) {
-            break;
-        }
-    }
+        return [$correctAnswer, $question];
+    }, TASK);
 }
 
 function isEven($number)

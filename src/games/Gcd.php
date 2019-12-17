@@ -2,27 +2,23 @@
 
 namespace BrainGames\games\Gcd;
 
-use function BrainGames\greetAndGetName;
-use function BrainGames\playGameStep;
+use function BrainGames\playGame;
 
-use const BrainGames\START_RANDOM_NUMBER;
-use const BrainGames\END_RANDOM_NUMBER;
-use const BrainGames\COUNT_QUESTIONS;
+use const BrainGames\START_RANDOM;
+use const BrainGames\END_RANDOM;
+
+const TASK = 'Find the greatest common divisor of given numbers.';
 
 function runGcd()
 {
-    $name = greetAndGetName('Find the greatest common divisor of given numbers.');
-
-    for ($i = 0; $i < COUNT_QUESTIONS; $i++) {
-        $a = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
-        $b = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
+    playGame(function () {
+        $a = rand(START_RANDOM, END_RANDOM);
+        $b = rand(START_RANDOM, END_RANDOM);
         $correctAnswer = gcd($a, $b);
         $question = "{$a} {$b}";
-        $resultGameStep = playGameStep($correctAnswer, $question, $name, $i);
-        if (!$resultGameStep) {
-            break;
-        }
-    }
+        
+        return [$correctAnswer, $question];
+    }, TASK);
 }
 
 function gcd($a, $b)

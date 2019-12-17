@@ -2,45 +2,40 @@
 
 namespace BrainGames\games\Progression;
 
-use function BrainGames\greetAndGetName;
-use function BrainGames\playGameStep;
+use function BrainGames\playGame;
 
-use const BrainGames\START_RANDOM_NUMBER;
-use const BrainGames\END_RANDOM_NUMBER;
-use const BrainGames\COUNT_QUESTIONS;
+use const BrainGames\START_RANDOM;
+use const BrainGames\END_RANDOM;
 
 const SIZE_PROGRESSION = 10;
+const TASK = 'What number is missing in the progression?';
 
 function runProgression()
 {
-    $name = greetAndGetName('What number is missing in the progression?');
+    playGame(function () {
+        $firstElement = rand(START_RANDOM, END_RANDOM);
+        $delta = rand(START_RANDOM, END_RANDOM);
+        $progression = fillProgression($firstElement, SIZE_PROGRESSION, $delta);
+        $missingElementIndex = array_rand($progression);
+        $correctAnswer = $progression[$missingElementIndex];
+        $question = makeQuestion($progression, $missingElementIndex);
 
-    for ($i = 0; $i < COUNT_QUESTIONS; $i++) {
-        $firstNumber = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
-        $missIndex = rand(START_RANDOM_NUMBER, SIZE_PROGRESSION - 1);
-        $delta = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
-        $progression = fillProgression($firstNumber, $delta);
-        $correctAnswer = $progression[$missIndex];
-        $question = makeQuestion($progression, $missIndex);
-        $resultGameStep = playGameStep($correctAnswer, $question, $name, $i);
-        if (!$resultGameStep) {
-            break;
-        }
-    }
+        return [$correctAnswer, $question];
+    }, TASK);
 }
 
-function fillProgression($firstNumber, $delta)
+function fillProgression($firstElement, $sizeProgression, $delta)
 {
     $progression = [];
-    for ($i = 0; $i < SIZE_PROGRESSION; $i++) {
-        $progression[] = $i === 0 ? $firstNumber : $progression[$i - 1] + $delta;
+    for ($i = 0; $i < $sizeProgression; $i++) {
+        $progression[] = $i === 0 ? $firstElement : $progression[$i - 1] + $delta;
     }
 
     return $progression;
 }
 
-function makeQuestion($progression, $missIndex)
+function makeQuestion($progression, $missingElementIndex)
 {
-    $progression[$missIndex] = '..';
+    $progression[$missingElementIndex] = '..';
     return implode(' ', $progression);
 }

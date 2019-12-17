@@ -14,9 +14,6 @@
         }
     ],
     "autoload": {
-        "psr-4": {
-          "BrainGames\\": "src"
-        },
         "files": [
             "src/Cli.php",
             "src/Game.php",

@@ -5,11 +5,11 @@ namespace BrainGames;
 use function cli\line;
 use function cli\prompt;
 
-const START_RANDOM_NUMBER = 1;
-const END_RANDOM_NUMBER = 100;
-const COUNT_QUESTIONS = 3;
+const START_RANDOM = 1;
+const END_RANDOM = 100;
+const QUESTIONS_COUNT = 3;
 
-function greetAndGetName($task)
+function playGame($makeData, $task)
 {
     line('Welcome to the Brain Game!');
     line($task);
@@ -18,21 +18,16 @@ function greetAndGetName($task)
     line("Hello, %s!", $name);
     line();
 
-    return $name;
-}
-
-function playGameStep($correctAnswer, $question, $name, $step)
-{
-    line("Question: %s", $question);
-    $answer = prompt("Your answer");
-    if ($answer == $correctAnswer) {
-        line("Correct!");
-        if ($step === COUNT_QUESTIONS - 1) {
-            line("Congratulations, %s!", $name);
+    for ($i = 0; $i < QUESTIONS_COUNT; $i++) {
+        [$correctAnswer, $question] = $makeData();
+        line("Question: %s", $question);
+        $answer = prompt("Your answer");
+        if ($answer != $correctAnswer) {
+            line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, $correctAnswer);
+            line("Let's try again, %s!", $name);
+            return;
         }
-        return true;
+        line("Correct!");
     }
-    line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, $correctAnswer);
-    line("Let's try again, %s!", $name);
-    return false;
+    line("Congratulations, %s!", $name);
 }

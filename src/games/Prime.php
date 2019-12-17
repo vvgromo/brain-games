@@ -2,25 +2,21 @@
 
 namespace BrainGames\games\Prime;
 
-use function BrainGames\greetAndGetName;
-use function BrainGames\playGameStep;
+use function BrainGames\playGame;
 
-use const BrainGames\START_RANDOM_NUMBER;
-use const BrainGames\END_RANDOM_NUMBER;
-use const BrainGames\COUNT_QUESTIONS;
+use const BrainGames\START_RANDOM;
+use const BrainGames\END_RANDOM;
+
+const TASK = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 function runPrime()
 {
-    $name = greetAndGetName('Answer "yes" if given number is prime. Otherwise answer "no".');
-    
-    for ($i = 0; $i < COUNT_QUESTIONS; $i += 1) {
-        $number = rand(START_RANDOM_NUMBER, END_RANDOM_NUMBER);
-        $correctAnswer = isPrime($number) ? 'yes' : 'no';
-        $resultGameStep = playGameStep($correctAnswer, $number, $name, $i);
-        if (!$resultGameStep) {
-            break;
-        }
-    }
+    playGame(function () {
+        $question = rand(START_RANDOM, END_RANDOM);
+        $correctAnswer = isPrime($question) ? 'yes' : 'no';
+
+        return [$correctAnswer, $question];
+    }, TASK);
 }
 
 function isPrime($number)
